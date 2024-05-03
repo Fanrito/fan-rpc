@@ -4,10 +4,11 @@
   <component name="MavenProjectsManager">
     <option name="originalFiles">
       <list>
+        <option value="$PROJECT_DIR$/example-common/pom.xml" />
         <option value="$PROJECT_DIR$/example-consumer/pom.xml" />
         <option value="$PROJECT_DIR$/example-producer/pom.xml" />
-        <option value="$PROJECT_DIR$/example-common/pom.xml" />
         <option value="$PROJECT_DIR$/fan-rpc-easy/pom.xml" />
+        <option value="$PROJECT_DIR$/fan-rpc-core/pom.xml" />
       </list>
     </option>
   </component>

@@ -14,7 +14,11 @@
         <module name="example-common" />
         <module name="example-consumer" />
         <module name="example-producer" />
+        <module name="fan-rpc-core" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="fan-rpc-easy (1)" target="1.5" />
+    </bytecodeTargetLevel>
   </component>
 </project>
