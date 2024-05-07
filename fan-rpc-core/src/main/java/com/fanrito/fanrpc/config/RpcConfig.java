@@ -1,5 +1,6 @@
 package com.fanrito.fanrpc.config;
 
+import com.fanrito.fanrpc.serializer.SerializerKeys;
 import lombok.Data;
 
 /**
@@ -27,4 +28,14 @@ public class RpcConfig {
      * 服务器端口
      */
     private Integer port = 8080;
+
+    /**
+     * 模拟调用
+     */
+    private Boolean mock = false;
+
+    /**
+     * 序列化器
+     */
+    private String serializer = SerializerKeys.JDK;
 }

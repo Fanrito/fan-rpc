@@ -11,7 +11,7 @@ public class RpcApplication {
     private static final Logger log = LoggerFactory.getLogger(RpcApplication.class);
     private static volatile RpcConfig rpcConfig;
 
-    private static void init(RpcConfig newRpcConfig) {
+    public static void init(RpcConfig newRpcConfig) {
         rpcConfig = newRpcConfig;
         log.info("rpc init, rpcConfig:{}", rpcConfig.toString());
     }

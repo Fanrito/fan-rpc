@@ -1,0 +1,2 @@
+json=com.fanrito.fanrpc.serializer.JsonSerializer
+kryo=com.fanrito.fanrpc.serializer.KryoSerializer

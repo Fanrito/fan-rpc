@@ -1,0 +1,2 @@
+jdk=com.fanrito.fanrpc.serializer.JdkSerializer
+hessian=com.fanrito.fanrpc.serializer.HessianSerializer

@@ -6,10 +6,9 @@ import com.fanrito.fanrpc.config.RpcConfig;
 import com.fanrito.fanrpc.proxy.ServiceProxyFactory;
 import com.fanrito.fanrpc.utils.ConfigUtils;
 
-public class ConsumerExample {
+public class MockConsumerExample {
     public static void main(String[] args) {
-        RpcConfig rpcConfig = ConfigUtils.loadConfig(RpcConfig.class, "rpc", "yml");
-        UserService userService = ServiceProxyFactory.getProxy(UserService.class, rpcConfig);
+        UserService userService = ServiceProxyFactory.getMockProxy(UserService.class);
         User user = new User();
         user.setName("fanrito");
         User newUser = userService.getUser(user);
@@ -18,7 +17,7 @@ public class ConsumerExample {
         } else {
             System.out.println("user == null");
         }
-        int number = userService.getNumber();
+        long number = userService.getNumber();
         System.out.println(number);
     }
 }

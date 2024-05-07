@@ -64,7 +64,6 @@ public class ConfigUtils {
             try {
                 Map<String, Object> data = mapper.readValue(ConfigUtils.class.getClassLoader().getResource(configFileBuffer.toString()), Map.class);
                 // 处理 YAML 数据
-                System.out.println(data);
                 for (Map.Entry<String, Object> entry : data.entrySet()) {
                     String key = entry.getKey();
                     if (key.startsWith(prefix)) {
