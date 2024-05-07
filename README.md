@@ -18,7 +18,8 @@
 ![image](https://github.com/Fanrito/fan-rpc/assets/96723391/3a66e114-e1a3-42eb-83e3-1e010ed93b4b)
 
 ### 最新进展
-目前服务的消费端已支持多种格式的配置文件（properties、yml/yaml），服务端仅支持properties格式
+2024.5.7 实现SPI机制加载序列化器，用户可以通过实现Serializer接口，然后通过SPI机制加载到系统中，从而实现序列化器的可扩展性
+2024.5.5 目前服务的消费端已支持多种格式的配置文件（properties、yml/yaml），服务端仅支持properties格式
 
 ## 扩展设计（待实现）
 1、服务注册发现
