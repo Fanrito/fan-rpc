@@ -1,5 +1,6 @@
 package com.fanrito.fanrpc.proxy;
 
+import com.fanrito.fanrpc.RpcApplication;
 import com.fanrito.fanrpc.config.RpcConfig;
 
 import java.lang.reflect.Proxy;
@@ -13,8 +14,8 @@ public class ServiceProxyFactory {
      * @param <T>
      * @return
      */
-    public static <T> T getProxy(Class<T> serviceClass, RpcConfig rpcConfig) {
-        if (rpcConfig.getMock()) {
+    public static <T> T getProxy(Class<T> serviceClass) {
+        if (RpcApplication.getRpcConfig().getMock()) {
             return (T) Proxy.newProxyInstance(
                     serviceClass.getClassLoader(),
                     new Class[]{serviceClass},
@@ -24,7 +25,7 @@ public class ServiceProxyFactory {
         return (T) Proxy.newProxyInstance(
                 serviceClass.getClassLoader(),
                 new Class[]{serviceClass},
-                new ServiceProxy(rpcConfig)
+                new ServiceProxy()
         );
     }
 

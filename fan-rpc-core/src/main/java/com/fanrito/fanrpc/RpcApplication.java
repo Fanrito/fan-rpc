@@ -1,7 +1,10 @@
 package com.fanrito.fanrpc;
 
+import com.fanrito.fanrpc.config.RegistryConfig;
 import com.fanrito.fanrpc.config.RpcConfig;
 import com.fanrito.fanrpc.constant.RpcConstant;
+import com.fanrito.fanrpc.registry.Registry;
+import com.fanrito.fanrpc.registry.RegistryFactory;
 import com.fanrito.fanrpc.utils.ConfigUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,6 +17,12 @@ public class RpcApplication {
     public static void init(RpcConfig newRpcConfig) {
         rpcConfig = newRpcConfig;
         log.info("rpc init, rpcConfig:{}", rpcConfig.toString());
+
+        // 初始化注册中心
+        RegistryConfig registryConfig = rpcConfig.getRegistryConfig();
+        Registry registry = RegistryFactory.getInstance(registryConfig.getRegistry());
+        registry.init(registryConfig);
+        log.info("registry init, registryConfig: {}", registryConfig);
     }
 
     public static void init() {
