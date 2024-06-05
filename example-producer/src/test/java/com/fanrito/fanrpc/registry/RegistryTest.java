@@ -27,7 +27,7 @@ public class RegistryTest {
     }
 
     @Test
-    public void register() throws Exception {
+    public void registerTest() throws Exception {
         ServiceMetaInfo serviceMetaInfo = new ServiceMetaInfo();
         serviceMetaInfo.setServiceName("myService");
         serviceMetaInfo.setServiceVersion("1.0");
@@ -49,7 +49,7 @@ public class RegistryTest {
     }
 
     @Test
-    public void unRegister() {
+    public void unRegisterTest() {
         ServiceMetaInfo serviceMetaInfo = new ServiceMetaInfo();
         serviceMetaInfo.setServiceName("myService");
         serviceMetaInfo.setServiceVersion("1.0");
@@ -59,12 +59,18 @@ public class RegistryTest {
     }
 
     @Test
-    public void serviceDiscovery() {
+    public void serviceDiscoveryTest() {
         ServiceMetaInfo serviceMetaInfo = new ServiceMetaInfo();
         serviceMetaInfo.setServiceName("myService");
         serviceMetaInfo.setServiceVersion("1.0");
         String serviceKey = serviceMetaInfo.getServiceKey();
         List<ServiceMetaInfo> serviceMetaInfoList = registry.serviceDiscovery(serviceKey);
         Assert.assertNotNull(serviceMetaInfoList);
+    }
+
+    @Test
+    public void heartBeatTest() throws Exception {
+        registerTest();
+        Thread.sleep(60 * 1000L);
     }
 }
