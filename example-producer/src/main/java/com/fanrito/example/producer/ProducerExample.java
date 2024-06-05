@@ -11,35 +11,37 @@ import com.fanrito.fanrpc.registry.Registry;
 import com.fanrito.fanrpc.registry.RegistryFactory;
 import com.fanrito.fanrpc.server.HttpServer;
 import com.fanrito.fanrpc.server.VertxHttpServer;
+import com.fanrito.fanrpc.server.tcp.VertxTcpServer;
 import com.fanrito.fanrpc.utils.ConfigUtils;
 
 public class ProducerExample {
 
     public static void main(String[] args) {
-        // RPC框架初始化
-        RpcConfig newRpcConfig = ConfigUtils.loadConfig(RpcConfig.class, RpcConstant.DEFAULT_CONFIG_PREFIX, "yml");
-
-        RpcApplication.init(newRpcConfig);
+// RPC 框架初始化
+        RpcApplication.init();
 
         // 注册服务
-        LocalRegistry.register(UserService.class.getName(), UserServiceImpl.class);
-        RegistryConfig registryConfig = RpcApplication.getRpcConfig().getRegistryConfig();
+        String serviceName = UserService.class.getName();
+        LocalRegistry.register(serviceName, UserServiceImpl.class);
+
+        // 注册服务到注册中心
+        RpcConfig rpcConfig = RpcApplication.getRpcConfig();
+        RegistryConfig registryConfig = rpcConfig.getRegistryConfig();
         Registry registry = RegistryFactory.getInstance(registryConfig.getRegistry());
         ServiceMetaInfo serviceMetaInfo = new ServiceMetaInfo();
-
-        serviceMetaInfo.setServiceName(UserService.class.getName());
-        serviceMetaInfo.setServiceVersion("1.0");
-        serviceMetaInfo.setServiceHost(newRpcConfig.getAddress());
-        serviceMetaInfo.setServicePort(newRpcConfig.getPort());
+        serviceMetaInfo.setServiceName(serviceName);
+        serviceMetaInfo.setServiceHost(rpcConfig.getAddress());
+        serviceMetaInfo.setServicePort(rpcConfig.getPort());
         try {
             registry.register(serviceMetaInfo);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
 
-        // 启动web服务
-        HttpServer httpServer = new VertxHttpServer();
-        System.out.println(RpcApplication.getRpcConfig());
-        httpServer.doStart(RpcApplication.getRpcConfig().getPort());
+        // 启动 TCP 服务
+        VertxTcpServer vertxTcpServer = new VertxTcpServer();
+        vertxTcpServer.doStart(8081);
+//        VertxHttpServer vertxHttpServer = new VertxHttpServer();
+//        vertxHttpServer.doStart(8081);
     }
 }

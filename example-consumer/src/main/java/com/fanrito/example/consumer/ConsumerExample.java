@@ -14,13 +14,24 @@ public class ConsumerExample {
         UserService userService = ServiceProxyFactory.getProxy(UserService.class);
         User user = new User();
         user.setName("fanrito");
-        User newUser = userService.getUser(user);
-        if (newUser != null) {
-            System.out.println(newUser.getName());
-        } else {
-            System.out.println("user == null");
+        // 计时开始
+        long start = System.currentTimeMillis();
+        int count = 0;
+        for (int i = 0; i < 200; i++) {
+            User newUser = userService.getUser(user);
+            count++;
+            System.out.println(count);
+//            if (newUser != null) {
+//                System.out.println(newUser.getName());
+//            } else {
+//                System.out.println("user == null");
+//            }
         }
-        int number = userService.getNumber();
-        System.out.println(number);
+        // 计时结束
+        long end = System.currentTimeMillis();
+        System.out.println("总耗时：" + (end - start) + "ms");
+        System.out.println("平均耗时：" + ((end - start) / count) + "ms");
+//        int number = userService.getNumber();
+//        System.out.println(number);
     }
 }

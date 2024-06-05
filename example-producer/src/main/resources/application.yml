@@ -2,4 +2,4 @@ rpc:
   name: "fanrito"
   version: "2.0"
   port: "8081"
-  serializer: "hessian"
+  serializer: "jdk"

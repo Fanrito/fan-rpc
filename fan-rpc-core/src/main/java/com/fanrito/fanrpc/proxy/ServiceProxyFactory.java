@@ -1,7 +1,6 @@
 package com.fanrito.fanrpc.proxy;
 
 import com.fanrito.fanrpc.RpcApplication;
-import com.fanrito.fanrpc.config.RpcConfig;
 
 import java.lang.reflect.Proxy;
 

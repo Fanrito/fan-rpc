@@ -1,1 +1,2 @@
 etcd=com.fanrito.fanrpc.registry.EtcdRegistry
+zookeeper=com.fanrito.fanrpc.registry.ZooKeeperRegistry
